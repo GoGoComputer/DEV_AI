@@ -61,11 +61,20 @@ print ("hello world")
     # 5. check git config
     # terminal: git config --list
     
+
+    # 6. add files to git
+    # terminal: git add .
+    # 7. commit files to git
+    # terminal: git commit -m "first commit"
     
+    # push to github
+    # 1. create a new repository in github
+    # 2. copy the HTTPS or SSH URL
+    # 3. add remote repository
+    # terminal: git branch -M main
+    # terminal: git remote add [origin or etc] [HTTPS or SSH URL] (delete => [])
+    # terminal: git push -u origin main
     
-    
-    
-         
     
     
     
