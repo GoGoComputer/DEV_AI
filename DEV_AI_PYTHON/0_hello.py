@@ -76,12 +76,15 @@ print ("hello world")
     # terminal: git push -u origin main
     
 # git commit
+    # terminal: git add .
     # terminal: git commit -m "first commit"
     
 # git push
+    # terminal: git branch -M main
     # terminal: git push -u origin main
     
-    
+    # end 0_hello.py
+    # Path: DEV_AI_PYTHON/0_hello.py
     
     
     
