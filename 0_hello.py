@@ -11,8 +11,6 @@ print ("hello world")
     # activate myvenv
     # terminal: source myvenv/bin/activate
     
-    
-    
     # will deactivate the virtual environment
     # terminal: deactivate
 
@@ -39,6 +37,35 @@ print ("hello world")
     # 3. add .env to .gitignore file
     # 4. add myvenv to .gitignore file
     
+    
+# git setup
+    # will deactivate the virtual environment (myvenv)
+    # terminal: deactivate
+    # cd to the file path in terminal (DEV_AI)
+    # 1. git init
+    # terminal: git init
+    # 2. check git version
+    # terminal: git --version
+    # 3. update git
+    # terminal: sudo apt-get update
+    
+    
+    # 4 Setting up a Git configuration file
+        #To set up a Git configuration file,
+         # open the command line of the distribution 
+         # you're working with and set the name with 
+         # the following command (replacing "Your Name" 
+         # with your preferred username).
+    # terminal: git config --global user.name "Your Name"
+    # teminal: git config --global user.email "youremail@domain.com"
+    # 5. check git config
+    # terminal: git config --list
+    
+    
+    
+    
+    
+         
     
     
     
