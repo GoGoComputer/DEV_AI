@@ -51,7 +51,7 @@ print ("hello world")
     
     
     # 4 Setting up a Git configuration file
-        #To set up a Git configuration file,
+         #To set up a Git configuration file,
          # open the command line of the distribution 
          # you're working with and set the name with 
          # the following command (replacing "Your Name" 
@@ -74,6 +74,13 @@ print ("hello world")
     # terminal: git branch -M main
     # terminal: git remote add [origin or etc] [HTTPS or SSH URL] (delete => [])
     # terminal: git push -u origin main
+    
+# git commit
+    # terminal: git commit -m "first commit"
+    
+# git push
+    # terminal: git push -u origin main
+    
     
     
     
