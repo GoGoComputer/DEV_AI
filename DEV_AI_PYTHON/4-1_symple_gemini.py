@@ -1,5 +1,7 @@
 # pip3 install google-generativeai
 
+# run python file in Dedicated terminal
+
 import google.generativeai as genai
 
 from dotenv import load_dotenv

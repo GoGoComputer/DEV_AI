@@ -1,4 +1,4 @@
-# 타로카드 랜덤으로 3개 뽑고 geminie pro 에게 질문하는 프로그램
+# 타로카드 랜덤으로 3개 뽑고 gemini pro 에게 질문하는 프로그램
 # 20240118 DEV IN WSL UBUNTU
 # pip3 install google-generativeai
 
