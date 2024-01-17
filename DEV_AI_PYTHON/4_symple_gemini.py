@@ -1,3 +1,6 @@
+# pip3 install google-generativeai
+
+
 import google.generativeai as genai
 
 from dotenv import load_dotenv
@@ -17,5 +20,7 @@ model = genai.GenerativeModel('gemini-pro')
 response = model.generate_content("반갑습니다")
 
 print(response.text)
+
+
 
 
