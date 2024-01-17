@@ -29,7 +29,7 @@ print ("hello world")
 # openai API call
     # 1. make file .env
     # 2. add API key to .env file
-    # 3. in .env file write: OPENAI_API_KEY="sk-xxxxxxx"
+    # 3. in .env file write: OPENAI_API_KEY= sk-xxxxxxx
     
 # gitignore [very very important!!!]
     # 1. make file .gitignore
@@ -80,7 +80,7 @@ print ("hello world")
     # terminal: git commit -m "first commit"
     
 # git push
-    # terminal: git branch -M main
+    
     # terminal: git push -u origin main
     
     # end 0_hello.py
