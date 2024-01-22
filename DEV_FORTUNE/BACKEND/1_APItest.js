@@ -8,6 +8,8 @@ termainal: node index.js
 termainal: npm init
 termainal: npm install openai
 terminal: npm install dotenv
+termainal: npm install cors
+
 
 */
 
