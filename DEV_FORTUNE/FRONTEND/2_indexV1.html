@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고고코딩 운세 확인하기</title>
+    <script>
+        async function getFortune() {
+            try {
+                // 서버의 '/fortuneTell' 엔드포인트로 POST 요청을 보냅니다.
+                const response = await fetch('http://localhost:3000/fortuneTell', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                }
+
+                // 서버로부터 반환된 데이터를 JSON 형태로 변환합니다.
+                const result = await response.json();
+
+                // 결과를 웹 페이지에 표시합니다.
+                document.getElementById('fortuneResult').textContent = result.assistant;
+            } catch (error) {
+                console.log('There was a problem fetching the fortune data:', error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>오늘의 운세 확인하기</h1>
+    <button onclick="getFortune()">운세 보기</button>
+    <p id="fortuneResult"></p>
+</body>
+</html>
+
+

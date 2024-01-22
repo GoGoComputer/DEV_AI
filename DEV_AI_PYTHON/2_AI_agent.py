@@ -1,7 +1,4 @@
- # video: Part 1: https://www.youtube.com/watch?v=x-OOq3rKZoI&t=64s
-    # video: Part 2: https://www.youtube.com/watch?v=RA1yRIYaKlA&t=922s
-     
- 
+
  # dev in WSL Ubuntu
  
  # activate myvenv
