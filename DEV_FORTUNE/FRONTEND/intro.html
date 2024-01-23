@@ -1,0 +1,51 @@
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>고고포춘 인트로</title>
+        <style>
+            /* 기본 스타일 */
+        body {
+            width: 100%; /* 모든 기기에 대해 기본적으로 전체 폭을 사용 */
+            box-sizing: border-box; /* 패딩과 보더가 폭에 포함되도록 설정 */
+        }
+    
+        /* 모바일 기기를 위한 스타일 */
+        @media screen and (max-width: 599px) {
+            body {
+                max-width: 100%; /* 모바일 기기에서는 전체 폭 사용 */
+            }
+        }
+    
+        /* 태블릿 기기를 위한 스타일 */
+        @media screen and (min-width: 600px) and (max-width: 899px) {
+            body {
+                max-width: 600px; /* 태블릿에서는 최대 600px 폭 사용 */
+                margin: 0 auto; /* 가운데 정렬 */
+            }
+        }
+    
+        /* 데스크톱 기기를 위한 스타일 */
+        @media screen and (min-width: 900px) {
+            body {
+                max-width: 800px; /* 데스크톱에서는 최대 800px 폭 사용 */
+                margin: 0 auto; /* 가운데 정렬 */
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <h1>잠시만 기다려 주세요</h1>
+    <div id = "intro" class= "intro-container">
+    <img src="helloWorld.png" alt="helloWorld" width="100%" >
+    <script>
+        // 3초 후에 다른 화면으로 전환
+        setTimeout(function() {
+            window.location.href = "6_indexV6.html"; // 다음페이지의URL을 적절히 수정해야 합니다.
+        }, 3000); // 3초를 밀리초로 나타낸 것입니다.
+    </script>
+    </body>
+    </html>

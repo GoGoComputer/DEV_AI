@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고고 운세</title>
+
+    <script>
+        function goTohome() {
+            window.location.href = "MOMO_MAIN.HTML";
+        }
+
+    </script>
+
+
+
+    <style>
+        /* 기본 스타일 */
+    body {
+        width: 100%; /* 모든 기기에 대해 기본적으로 전체 폭을 사용 */
+        box-sizing: border-box; /* 패딩과 보더가 폭에 포함되도록 설정 */
+    }
+
+    /* 모바일 기기를 위한 스타일 */
+    @media screen and (max-width: 599px) {
+        body {
+            max-width: 100%; /* 모바일 기기에서는 전체 폭 사용 */
+        }
+    }
+
+    /* 태블릿 기기를 위한 스타일 */
+    @media screen and (min-width: 600px) and (max-width: 899px) {
+        body {
+            max-width: 600px; /* 태블릿에서는 최대 600px 폭 사용 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+    }
+
+    /* 데스크톱 기기를 위한 스타일 */
+    @media screen and (min-width: 900px) {
+        body {
+            max-width: 800px; /* 데스크톱에서는 최대 800px 폭 사용 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+    }
+    </style>
+
+    <style>
+         /* 페이지 내부 요소 배치 수정 */
+    .message {
+        display: flex;
+        justify-content: flex-end; /* 채팅 내용을 오른쪽으로 정렬 */
+        margin-bottom: 10px; /* 채팅 메시지 간의 간격 설정 */
+    }
+
+    .message.user {
+        justify-content: flex-start; /* 사용자 채팅 메시지를 왼쪽으로 정렬 */
+    }
+
+    .message.gpt {
+        background-color: #e0e0e0; /* GPT 채팅 메시지 배경색 설정 */
+    }
+
+    .message.user {
+        background-color: #efefef; /* 사용자 채팅 메시지 배경색 설정 */
+    }
+
+    /* 나머지 스타일은 그대로 유지 */
+    </style>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%; /* 페이지의 폭을 375px로 설정 */
+            height: 100%; /* 페이지의 높이를 812px로 설정 */
+            background-color: #f0f0f0; /* 배경색을 설정 */
+            font-family: Arial, sans-serif; /* 폰트 설정 */
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        header, main, footer {
+            width: 100%; /* 가로 사이즈를 100%로 설정 */
+            box-sizing: border-box; /* border를 포함한 전체 크기로 설정 */
+        }
+
+        header {
+            background-color: rgb(147, 200, 238);
+            color: rgb(211, 229, 247);
+            text-align: center;
+            padding: 10px;
+            height: 100px; /* header 높이 */
+        }
+
+        main {
+            background-color: rgb(42, 42, 2);
+            padding: 20px;
+            height: 80%; /* main 높이를 전체 높이의 80%로 설정 */
+        }
+
+        footer {
+            background-color: rgb(147, 200, 238);
+            color: #ed0f0f;
+            text-align: center;
+            padding: 10px;
+            height: 100px; /* footer 높이 */
+        }
+
+
+
+
+
+
+        .input-group {
+            width: 100%; /* 가로 크기를 화면 전체로 설정 */
+            box-sizing: border-box; /* 패딩과 보더를 폭에 포함 */
+            padding: 10px; /* 패딩 추가 */
+            display: flex; /* Flexbox 레이아웃 사용 */
+            justify-content: space-between; /* 요소들을 양 끝으로 정렬 */
+        }
+        
+        .input-group input[type="text"] {
+            width: 85%; /* 텍스트 입력 필드의 가로 크기 */
+        }
+        .inputButton {
+            width: 15%; /* 전송 버튼의 가로 크기 */
+        }
+        
+  
+
+
+/* body의 main 요소에 스크롤바를 표시하고 최대 높이를 설정 */
+main {
+    background-color: rgb(211, 229, 247);
+    padding: 20px;
+    overflow-y: auto; /* 세로 스크롤바를 표시하도록 설정 */
+    max-height: 80%; /* 최대 높이를 설정 (내용이 화면을 벗어나면 스크롤 가능) */
+}
+
+        
+    </style>
+  <!--   .input-group input[type="submit"] {
+        width: 10%; /* 전송 버튼의 가로 크기 */
+    } -->
+
+    
+    <script>
+        async function getFortune() {
+            try {
+                // 서버의 '/fortuneTell' 엔드포인트로 POST 요청을 보냅니다.
+                const response = await fetch('http://localhost:3000/fortuneTell', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                }
+
+                // 서버로부터 반환된 데이터를 JSON 형태로 변환합니다.
+                const result = await response.json();
+
+                // 결과를 웹 페이지에 표시합니다.
+                document.getElementById('fortuneResult').textContent = result.assistant;
+            } catch (error) {
+                console.log('There was a problem fetching the fortune data:', error);
+            }
+        }
+    </script>
+
+    <style>
+    button {
+        float: left; /* 왼쪽으로 정렬 */
+    }
+</style>
+
+
+<style>
+    button {
+        float: left; /* 왼쪽으로 정렬 */
+    }
+</style>
+
+</head>
+<body>
+
+    <header>
+        <button onclick="goTohome()">홈으로</button>
+        <h1>고고포춘</h1>
+    </header>
+
+    <main>
+        <div id="conversation"></div>
+
+        <main>
+            <div id="conversation"></div>
+            <div id="waitingMessage" style="display: none;">대기 중...</div>
+        </main>
+    </main>
+
+    <footer>
+        <div class="input-group">
+            <!-- ID를 추가한 input 요소 -->
+            <input id="messageInput" type="text" placeholder="메시지 입력"/> 
+            <button class="inputButton" onclick="sendMessage()">전송</button>
+        </div>
+    </footer>
+
+<script>
+    const conversationDiv = document.getElementById('conversation');
+
+    async function sendMessage() {
+        const userInput = document.getElementById('messageInput').value; // 사용자 입력값 가져오기
+
+        try {
+            // 사용자 입력을 화면에 추가
+            appendMessage('user', userInput);
+
+            const response = await fetch('http://localhost:3000/fortuneTell', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput }) // 사용자 입력을 JSON으로 변환하여 보냄
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            // GPT의 응답을 화면에 추가
+            appendMessage('gpt', result.assistant);
+
+            // 메시지 입력값 지우기
+            document.getElementById('messageInput').value = "";
+        } catch (error) {
+            console.log('There was a problem fetching the fortune data:', error);
+        }
+    }
+
+    function appendMessage(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.textContent = message;
+        conversationDiv.appendChild(messageDiv);
+    }
+</script>
+<script>
+    async function sendMessage() {
+        const userInput = document.getElementById('messageInput').value; // 사용자 입력값 가져오기
+        const waitingMessage = document.getElementById('waitingMessage');
+        waitingMessage.style.display = 'block'; // 대기 중 메시지 표시
+    
+        try {
+            // 사용자 입력을 화면에 추가
+            appendMessage('user', userInput);
+    
+            const response = await fetch('http://localhost:3000/fortuneTell', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput }) // 사용자 입력을 JSON으로 변환하여 보냄
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error! status: ${response.status}`);
+            }
+    
+            const result = await response.json();
+    
+            // GPT의 응답을 화면에 추가
+            appendMessage('gpt', result.assistant);
+    
+            // 메시지 입력값 지우기
+            document.getElementById('messageInput').value = "";
+        } catch (error) {
+            console.log('There was a problem fetching the fortune data:', error);
+        } finally {
+            waitingMessage.style.display = 'none'; // 대기 중 메시지 숨김
+        }
+    }
+    
+
+
+
+    function appendMessage(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.textContent = message;
+        conversationDiv.appendChild(messageDiv);
+    
+        // 새 메시지가 추가될 때 스크롤을 아래로 이동
+        conversationDiv.scrollTop = conversationDiv.scrollHeight;
+    }
+    
+    
+</script>
+</body>
+</html>

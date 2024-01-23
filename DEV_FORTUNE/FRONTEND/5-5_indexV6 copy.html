@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고고 운세</title>
+    <style>
+        /* 기본 스타일 */
+    body {
+        width: 100%; /* 모든 기기에 대해 기본적으로 전체 폭을 사용 */
+        box-sizing: border-box; /* 패딩과 보더가 폭에 포함되도록 설정 */
+    }
+
+    /* 모바일 기기를 위한 스타일 */
+    @media screen and (max-width: 599px) {
+        body {
+            max-width: 100%; /* 모바일 기기에서는 전체 폭 사용 */
+        }
+    }
+
+    /* 태블릿 기기를 위한 스타일 */
+    @media screen and (min-width: 600px) and (max-width: 899px) {
+        body {
+            max-width: 600px; /* 태블릿에서는 최대 600px 폭 사용 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+    }
+
+    /* 데스크톱 기기를 위한 스타일 */
+    @media screen and (min-width: 900px) {
+        body {
+            max-width: 800px; /* 데스크톱에서는 최대 800px 폭 사용 */
+            margin: 0 auto; /* 가운데 정렬 */
+        }
+    }
+    </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%; /* 페이지의 폭을 375px로 설정 */
+            height: 100%; /* 페이지의 높이를 812px로 설정 */
+            background-color: #f0f0f0; /* 배경색을 설정 */
+            font-family: Arial, sans-serif; /* 폰트 설정 */
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        header, main, footer {
+            width: 100%; /* 가로 사이즈를 100%로 설정 */
+            box-sizing: border-box; /* border를 포함한 전체 크기로 설정 */
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            height: 100px; /* header 높이 */
+        }
+
+        main {
+            background-color: beige;
+            padding: 20px;
+            height: 80%; /* main 높이를 전체 높이의 80%로 설정 */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            height: 100px; /* footer 높이 */
+        }
+
+
+
+
+
+
+        .input-group {
+            width: 100%; /* 가로 크기를 화면 전체로 설정 */
+            box-sizing: border-box; /* 패딩과 보더를 폭에 포함 */
+            padding: 10px; /* 패딩 추가 */
+            display: flex; /* Flexbox 레이아웃 사용 */
+            justify-content: space-between; /* 요소들을 양 끝으로 정렬 */
+        }
+        
+        .input-group input[type="text"] {
+            width: 85%; /* 텍스트 입력 필드의 가로 크기 */
+        }
+        .inputButton {
+            width: 15%; /* 전송 버튼의 가로 크기 */
+        }
+        
+       
+        
+
+    </style>
+  <!--   .input-group input[type="submit"] {
+        width: 10%; /* 전송 버튼의 가로 크기 */
+    } -->
+
+    
+    <script>
+        async function getFortune() {
+            try {
+                // 서버의 '/fortuneTell' 엔드포인트로 POST 요청을 보냅니다.
+                const response = await fetch('http://localhost:3000/fortuneTell', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error! status: ${response.status}`);
+                }
+
+                // 서버로부터 반환된 데이터를 JSON 형태로 변환합니다.
+                const result = await response.json();
+
+                // 결과를 웹 페이지에 표시합니다.
+                document.getElementById('fortuneResult').textContent = result.assistant;
+            } catch (error) {
+                console.log('There was a problem fetching the fortune data:', error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>오늘의 운세를 질문하세요!</h1>
+    </header>
+
+    <main>
+        <div id="fortuneResponse"></div>
+        
+       
+
+        
+    </main>
+
+    <footer>
+        <div class="input-group">
+            <input name="text" type="text" placeholder="메시지 입력"/> 
+            <button class="inputButton" onclick="getFortune()">전송</button>
+            
+        </div>
+
+        
+        
+    </footer>
+  <!-- HTML의 나머지 부분은 동일하게 유지 -->
+
+<script>
+    async function getFortune() {
+        const userInput = document.querySelector('.input-group input[type="text"]').value; // 사용자 입력값 가져오기
+
+        try {
+            const response = await fetch('http://localhost:3000/fortuneTell', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput }) // 사용자 입력을 JSON으로 변환하여 보냄
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            document.getElementById('fortuneResponse').textContent = result.assistant;
+        } catch (error) {
+            console.log('There was a problem fetching the fortune data:', error);
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -63,8 +63,6 @@ const app = express(); // Express 앱 생성
 const cors = require('cors')
 app.use(cors())
 
-
-
 require('dotenv').config();
 
 const OpenAI = require ('openai');
@@ -98,6 +96,7 @@ app.get('/fortuneTell', async function (req, res) {
 });
 
 app.listen(3000)
+
 
 
 
